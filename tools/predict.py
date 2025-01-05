@@ -266,10 +266,10 @@ def main(exp, args):
 if __name__ == "__main__":
     script_dir = Path(__file__).parent.resolve()
 
-    with open(script_dir / "train.yaml", "r") as f:
+    with open(script_dir / "predict.yaml", "r") as f:
         args = yaml.safe_load(f)
     args = PredictConfigs(args)
-    
+
     exp = get_exp(args.exp_file, args.name)
 
     main(exp, args)
