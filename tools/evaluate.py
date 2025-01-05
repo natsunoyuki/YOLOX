@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
     configure_module()
 
-    with open(script_dir / "train.yaml", "r") as f:
+    with open(script_dir / "evaluate.yaml", "r") as f:
         args = yaml.safe_load(f)
     args = EvaluateConfigs(args)
 
