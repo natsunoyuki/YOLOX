@@ -7,8 +7,8 @@ tsize: null
 
 experiment_name: "coco2017"
 name: "coco2017"
-exp_file: "exps/example/custom/yolox_s.py"
-ckpt: null
+exp_file: "exps/default/yolox_s.py"
+ckpt: "yolox_s.pth"
 
 camid: 0
 save_result: True
