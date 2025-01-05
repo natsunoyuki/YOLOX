@@ -2,7 +2,7 @@ experiment_name: "coco2017"
 name: "coco2017"
 exp_file: "exps/example/custom/yolox_s.py"
 
-ckpt: null
+ckpt: "yolox_s.pth"
 
 conf: 0.25
 nms: 0.3
