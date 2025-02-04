@@ -42,6 +42,7 @@ def xml_to_dict(xml_path):
             "y2": int(root.find("./object/bndbox/ymax").text)}
 
 
+# TODO improve the script. This was made on the fly to test things out...
 if __name__ == "__main__":
     script_dir = Path(__file__).parent.resolve()
 
@@ -130,8 +131,8 @@ if __name__ == "__main__":
             {
                 'id': i,
                 'image_id': rev_img_id_ann[f["filename"].stem],
-                'category_id': 1 if f["label"]=="dog" else 2,
-                'bbox': [f["x1"], f["y1"], f["x2"], f["y2"]],
+                'category_id': 1 if f["label"] == "dog" else 2,
+                'bbox': [f["x1"], f["y1"], f["x2"] - f["x1"], f["y2"] - f["y1"]],
                 'area': (f["x2"] - f["x1"]) * (f["y2"] - f["y1"]),
                 'segmentation': [[]],
                 'iscrowd': 0,
@@ -179,7 +180,7 @@ if __name__ == "__main__":
                 'id': i,
                 'image_id': rev_img_id_ann[f["filename"].stem],
                 'category_id': 1 if f["label"]=="dog" else 2,
-                'bbox': [f["x1"], f["y1"], f["x2"], f["y2"]],
+                'bbox': [f["x1"], f["y1"], f["x2"] - f["x1"], f["y2"] - f["y1"]],
                 'area': (f["x2"] - f["x1"]) * (f["y2"] - f["y1"]),
                 'segmentation': [[]],
                 'iscrowd': 0,

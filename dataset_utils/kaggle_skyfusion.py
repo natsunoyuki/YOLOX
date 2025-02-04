@@ -5,6 +5,7 @@
 from pathlib import Path
 import shutil
 
+
 DATA_DIR = "datasets/"
 SUB_DIR = "SkyFusion/"
 ANNOTATIONS_DIR = "annotations/"
@@ -17,6 +18,8 @@ TRAIN_DIR = "train2017"
 VAL_DIR = "val2017"
 ANN_FILE = "instances_"
 
+
+# TODO improve the script. This was made on the fly to test things out...
 if __name__ == "__main__":
     script_dir = Path(__file__).parent.resolve()
 
