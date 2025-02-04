@@ -10,7 +10,7 @@ resume: False
 ckpt: null
 start_epoch: null
 
-fp16: False
+fp16: True
 
 num_machines: 1
 machine_rank: 0

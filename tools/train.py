@@ -27,7 +27,7 @@ class TrainConfigs:
         self.resume = yaml_args.get("resume", False)
         self.ckpt = yaml_args.get("ckpt", None)
         self.start_epoch = yaml_args.get("start_epoch", None)
-        self.fp16 = yaml_args.get("fp16", False)
+        self.fp16 = yaml_args.get("fp16", True)
         self.num_machines = yaml_args.get("num_machines", 1)
         self.machine_rank = yaml_args.get("machine_rank", 0)
         self.cache = yaml_args.get("cache", "ram")
