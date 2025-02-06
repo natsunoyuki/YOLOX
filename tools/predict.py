@@ -1,3 +1,7 @@
+"""
+Script for making predictions with YOLOX models.
+"""
+import argparse
 from pathlib import Path
 import yaml
 import os
@@ -264,9 +268,25 @@ def main(exp, args):
 
 
 if __name__ == "__main__":
-    script_dir = Path(__file__).parent.resolve()
+    parser = argparse.ArgumentParser(
+        prog="YOLOX predict.", description="Predictions with a YOLOX model."
+    )
+    parser.add_argument(
+        "--config_dir", 
+        help="Sub directory inside `YOLOX/` containing the `tools/` configuration files.", 
+        default="tools_configs/",
+    )
+    parser.add_argument(
+        "--config", help="Name of the predict configuration file.", default="predict.yaml"
+    )
+    args = parser.parse_args()
+    config_file_name = args.config
+    config_dir = args.config_dir
 
-    with open(script_dir / "predict.yaml", "r") as f:
+    tools_dir = Path(__file__).parent.resolve()
+    yolox_dir = tools_dir.parent.resolve()
+
+    with open(yolox_dir / config_dir / config_file_name", "r") as f:
         args = yaml.safe_load(f)
     args = PredictConfigs(args)
 

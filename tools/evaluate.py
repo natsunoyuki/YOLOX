@@ -1,3 +1,8 @@
+"""
+Script for evaluating YOLOX models.
+"""
+
+import argparse
 from pathlib import Path
 import yaml
 import os
@@ -138,11 +143,27 @@ def main(exp, args, num_gpu):
 
 
 if __name__ == "__main__":
-    script_dir = Path(__file__).parent.resolve()
+    parser = argparse.ArgumentParser(
+        prog="YOLOX evaluate.", description="Evaluates a YOLOX model."
+    )
+    parser.add_argument(
+        "--config_dir", 
+        help="Sub directory inside `YOLOX/` containing the `tools/` configuration files.", 
+        default="tools_configs/",
+    )
+    parser.add_argument(
+        "--config", help="Name of the evaluate configuration file.", default="evaluate.yaml"
+    )
+    args = parser.parse_args()
+    config_file_name = args.config
+    config_dir = args.config_dir
+
+    tools_dir = Path(__file__).parent.resolve()
+    yolox_dir = tools_dir.parent.resolve()
 
     configure_module()
 
-    with open(script_dir / "evaluate.yaml", "r") as f:
+    with open(yolox_dir / config_dir / config_file_name, "r") as f:
         args = yaml.safe_load(f)
     args = EvaluateConfigs(args)
 
