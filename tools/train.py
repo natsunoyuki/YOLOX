@@ -3,6 +3,7 @@
 # Copyright (c) Megvii, Inc. and its affiliates.
 
 from pathlib import Path
+import argparse
 import yaml
 
 import random
@@ -60,11 +61,16 @@ def main(exp: Exp, args):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog="YOLOX train.", description="Trains a YOLOX model.")
+    parser.add_argument("--config", help="Name of the train YAML config file.", default="train.yaml")
+    args = parser.parse_args()
+
     script_dir = Path(__file__).parent.resolve()
+    config_file_name = args.config
 
     configure_module()
 
-    with open(script_dir / "train.yaml", "r") as f:
+    with open(script_dir / config_file_name, "r") as f:
         args = yaml.safe_load(f)
     args = TrainConfigs(args)
     
