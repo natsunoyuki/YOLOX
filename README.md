@@ -41,23 +41,24 @@ pip3 install -e .
 ```
 
 ## YOLOX Train, Evaluate and Predict Tools
-Various tools for training, evaluating and predicting are available under `tools/`.
+Various scripts for training, evaluating and predicting are available under `tools/`, while the corresponding configuration YAML files should be placed under `tools_configs/`. A default set of configuration files are available under `tools_configs/`, and additional files may be created and passed to the script as an argument.
+
 ### Model Training
-After placing the training data and "exp" file (see section below) in the appropriate locations, set up the training configurations in `tools/train.yaml`, and run the training script:
+After placing the training data and "exp" file (see section below) in the appropriate locations, set up the training configurations in `tools_configs/train.yaml`, and run the training script:
 ```bash
-python3 tools/train.py
+python3 tools/train.py --config train.yaml
 ```
 
 ### Model Evaluation
-After placing the evaluation data and "exp" file (see section below) in the appropriate locations, set up the evaluation configurations in `tools/evaluate.yaml`, and run the evaluation script:
+After placing the evaluation data and "exp" file (see section below) in the appropriate locations, set up the evaluation configurations in `tools_config/evaluate.yaml`, and run the evaluation script:
 ```bash
-python3 tools/evaluate.py
+python3 tools/evaluate.py --config evaluate.yaml
 ```
 
 ### Predict
-After placing the prediction data and "exp" file (see section below) in the appropriate locations, set up the prediction configurations in `tools/predict.yaml`, and run the prediction script:
+After placing the prediction data and "exp" file (see section below) in the appropriate locations, set up the prediction configurations in `tools_config/predict.yaml`, and run the prediction script:
 ```bash
-python3 tools/predict.py
+python3 tools/predict.py --config predict.yaml
 ```
 
 
