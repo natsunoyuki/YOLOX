@@ -5,6 +5,7 @@
 YOLOX_outputs/
 datasets/
 sandbox/
+tools_configs/
 # do not ignore datasets under yolox/data
 !*yolox/data/datasets/
 
