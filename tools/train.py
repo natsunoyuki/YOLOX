@@ -61,16 +61,27 @@ def main(exp: Exp, args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="YOLOX train.", description="Trains a YOLOX model.")
-    parser.add_argument("--config", help="Name of the train YAML config file.", default="train.yaml")
+    parser = argparse.ArgumentParser(
+        prog="YOLOX train.", description="Trains a YOLOX model."
+    )
+    parser.add_argument(
+        "--config_dir", 
+        help="Sub directory inside `YOLOX/` containing the `tools/` configuration files.", 
+        default="tools_configs/",
+    )
+    parser.add_argument(
+        "--config", help="Name of the train configuration file.", default="train.yaml"
+    )
     args = parser.parse_args()
-
-    script_dir = Path(__file__).parent.resolve()
     config_file_name = args.config
+    config_dir = args.config_dir
+
+    tools_dir = Path(__file__).parent.resolve()
+    yolox_dir = tools_dir.parent.resolve()
 
     configure_module()
 
-    with open(script_dir / config_file_name, "r") as f:
+    with open(yolox_dir / config_dir / config_file_name, "r") as f:
         args = yaml.safe_load(f)
     args = TrainConfigs(args)
     
