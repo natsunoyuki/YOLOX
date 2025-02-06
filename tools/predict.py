@@ -286,7 +286,7 @@ if __name__ == "__main__":
     tools_dir = Path(__file__).parent.resolve()
     yolox_dir = tools_dir.parent.resolve()
 
-    with open(yolox_dir / config_dir / config_file_name", "r") as f:
+    with open(yolox_dir / config_dir / config_file_name, "r") as f:
         args = yaml.safe_load(f)
     args = PredictConfigs(args)
 
