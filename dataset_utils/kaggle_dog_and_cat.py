@@ -62,13 +62,14 @@ if __name__ == "__main__":
     # List all individual files in the annotations directory.
     ann_files = sorted(list((data_dir / ANNOTATIONS_DIR).iterdir()))
     
-    
+
     # Train val split.
     train_files = random.sample(ann_files, int(len(ann_files)*0.8))
     val_files = list(set(ann_files).difference(set(train_files)))
     #train_files = ann_files[:int(len(ann_files)*0.8)]
     #val_files = ann_files[int(len(ann_files)*0.8):]
 
+    # Train images.
     train_images = []
     for f in train_files:
         if f.name == ".DS_Store":
@@ -82,6 +83,7 @@ if __name__ == "__main__":
 
     assert len(train_files) == len(train_images)
 
+    # Val images.
     val_images = []
     for f in val_files:
         if f.name == ".DS_Store":
