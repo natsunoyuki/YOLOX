@@ -256,8 +256,13 @@ def main(exp, args):
         trt_file = None
         decoder = None
 
+    if hasattr(exp, "class_names"):
+        class_names = exp.class_names
+    else:
+        class_names = COCO_CLASSES
+
     predictor = Predictor(
-        model, exp, COCO_CLASSES, trt_file, decoder,
+        model, exp, class_names, trt_file, decoder,
         args.device, args.fp16, args.legacy,
     )
     current_time = time.localtime()
