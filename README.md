@@ -43,27 +43,47 @@ pip3 install -e .
 ## YOLOX Train, Evaluate and Predict Tools
 Various scripts for training, evaluating and predicting are available under `tools/`, while the corresponding configuration YAML files should be placed under `tools_configs/`. A default set of configuration files are available under `tools_configs/`, and additional files may be created and passed to the script as an argument.
 
-### Model Training
-After placing the training data and "exp" file (see section below) in the appropriate locations, set up the training configurations in `tools_configs/train.yaml`, and run the training script:
+### Training Data Preparation
+By convention, all training data should be in the <a href = "https://cocodataset.org/#home">MS-COCO</a> format. The images for the train, validation and test splits should be placed under individual folders `train2017/`, `val2017/` and `test2017/`, and all annotation JSON files should be placed under `annotations/` as in the tree below. The object detection bounding box annotations should be in the <a href = "https://cocodataset.org/#home">MS-COCO</a> format: `[x0, y0, w, h]`.
+
 ```bash
-python3 tools/train.py --config train.yaml
+datasets/
+├── data_dir_1
+├── ...
+└── data_dir_N
+    ├── train2017/
+    │   └── *.jpg
+    ├── val2017/
+    │   └── *.jpg
+    ├── test2017/
+    │   └── *.jpg
+    └── annotations
+        ├── instances_train2017.json
+        ├── instances_val2017.json
+        └── instances_test2017.json
+```
+
+### Model Training
+After placing the training data and "exp" file (see section below) in the appropriate locations, set up the training configurations in `tools_configs/<data-name>/train.yaml`, and run the training script:
+```bash
+python3 tools/train.py --config_dir tools_configs/<data-name>/ --config train.yaml
 ```
 
 ### Model Evaluation
-After placing the evaluation data and "exp" file (see section below) in the appropriate locations, set up the evaluation configurations in `tools_config/evaluate.yaml`, and run the evaluation script:
+After placing the evaluation data and "exp" file (see section below) in the appropriate locations, set up the evaluation configurations in `tools_config/<data-name>/evaluate.yaml`, and run the evaluation script:
 ```bash
-python3 tools/evaluate.py --config evaluate.yaml
+python3 tools/evaluate.py --config_dir tools_configs/<data-name>/ --config evaluate.yaml
 ```
 
 ### Predict
-After placing the prediction data and "exp" file (see section below) in the appropriate locations, set up the prediction configurations in `tools_config/predict.yaml`, and run the prediction script:
+After placing the prediction data and "exp" file (see section below) in the appropriate locations, set up the prediction configurations in `tools_config/<data-name>/predict.yaml`, and run the prediction script:
 ```bash
-python3 tools/predict.py --config predict.yaml
+python3 tools/predict.py --config_dir tools_configs/<data-name>/ --config predict.yaml
 ```
 
 
 ## Exp Files
-Settings for YOLOX models are defined in "exp" `.py` files under `exps/`. These files contain model settings such as the model depth and width, the number of classes in the data, the location of the data, the number of training epochs etc. A new "exp" file should be created for each new experiment, which will be used for training, evaluating and predicting with the model. Some example "exp" files are provided under `exps/default/` and `exps/example/custom/`.
+Settings for YOLOX models are defined in "exp" `.py` files under `exps/`. These files contain model settings such as the model depth and width, the number of classes in the data, the location of the data, the number of training epochs etc. A new "exp" file should be created for each new experiment, which will be used for training, evaluating and predicting with the model. Some example "exp" files are provided under `exps/default/` and `exps/example/custom/`. Additionally, some other "exp" files for datasets found on Kaggle such as `exps/example/kaggle_dog_and_cat/` are also available as examples on how to craft "exp" files for custom data.
 
 
 ## Deployment
