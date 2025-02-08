@@ -108,7 +108,7 @@ if __name__ == "__main__":
             'url': '',
             'date_created': '2024-01-01'},
         'licenses': [{'id': 1, 'url': 'https://creativecommons.org/licenses/by/4.0/', 'name': 'CC BY 4.0'}], 
-        'categories': [{'id': 1, 'name': 'dog'}, {'id': 2, 'name': 'cat'}], 
+        'categories': [{'id': 0, 'name': 'dog'}, {'id': 1, 'name': 'cat'}], 
         'images': [], 
         'annotations': [],
     }
@@ -156,7 +156,7 @@ if __name__ == "__main__":
             'url': '',
             'date_created': '2024-01-01'},
         'licenses': [{'id': 1, 'url': 'https://creativecommons.org/licenses/by/4.0/', 'name': 'CC BY 4.0'}], 
-        'categories': [{'id': 1, 'name': 'dog'}, {'id': 2, 'name': 'cat'}], 
+        'categories': [{'id': 0, 'name': 'dog'}, {'id': 1, 'name': 'cat'}], 
         'images': [], 
         'annotations': [],
     }
