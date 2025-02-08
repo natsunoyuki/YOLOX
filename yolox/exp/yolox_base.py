@@ -20,6 +20,9 @@ class Exp(BaseExp):
         # ---------------- model config ---------------- #
         # detect classes number of model
         self.num_classes = 80
+        # corresponding class names. For MS-COCO 2017, use "coco".
+        # for custom data, a list of the classes in the right order.
+        self.class_names = "coco"
         # factor of model depth
         self.depth = 1.00
         # factor of model width

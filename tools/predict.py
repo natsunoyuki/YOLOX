@@ -258,8 +258,10 @@ def main(exp, args):
 
     if hasattr(exp, "class_names"):
         class_names = exp.class_names
+        if isinstance(class_names, str) and class_names.lower() in ["coco", "mscoco", "ms-coco"]:
+            class_names = COCO_CLASSES
     else:
-        class_names = COCO_CLASSES
+        class_names = None
 
     predictor = Predictor(
         model, exp, class_names, trt_file, decoder,
