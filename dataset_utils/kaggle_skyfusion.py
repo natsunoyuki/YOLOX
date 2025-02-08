@@ -4,6 +4,7 @@
 
 from pathlib import Path
 import shutil
+import json
 
 
 DATA_DIR = "datasets/"
@@ -17,6 +18,8 @@ TEST_DIR = "test2017"
 TRAIN_DIR = "train2017"
 VAL_DIR = "val2017"
 ANN_FILE = "instances_"
+
+CATEGORIES = [{'id': 0, 'name': 'aircraft'}, {'id': 1, 'name': 'ship'}, {'id': 2, 'name': 'vehicle'}]
 
 
 # TODO improve the script. This was made on the fly to test things out...
@@ -65,6 +68,31 @@ if __name__ == "__main__":
             (data_dir / ORIG_VAL_DIR / (ANN_FILE + VAL_DIR + ".json")),
             (data_dir / ANNOTATIONS_DIR / (ANN_FILE + VAL_DIR + ".json")),
         )
+
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + TRAIN_DIR + ".json"), "r") as f:
+        anns = json.load(f)
+    anns["categories"] = CATEGORIES
+    for i in range(len(anns["annotations"])):
+        anns["annotations"][i]["category_id"] = anns["annotations"][i]["category_id"] - 1
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + TRAIN_DIR + ".json"), "w") as f:
+        json.dump(anns, f, indent=4)
+
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + VAL_DIR + ".json"), "r") as f:
+        anns = json.load(f)
+    anns["categories"] = CATEGORIES
+    for i in range(len(anns["annotations"])):
+        anns["annotations"][i]["category_id"] = anns["annotations"][i]["category_id"] - 1
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + VAL_DIR + ".json"), "w") as f:
+        json.dump(anns, f, indent=4)
+       
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + TEST_DIR + ".json"), "r") as f:
+        anns = json.load(f)
+    anns["categories"] = CATEGORIES
+    for i in range(len(anns["annotations"])):
+        anns["annotations"][i]["category_id"] = anns["annotations"][i]["category_id"] - 1
+    with open(data_dir / ANNOTATIONS_DIR / (ANN_FILE + TEST_DIR + ".json"), "w") as f:
+        json.dump(anns, f, indent=4)
+
 
     # Then rename the image sub dirs.
     if (data_dir / ORIG_TEST_DIR).exists():
