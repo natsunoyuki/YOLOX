@@ -42,6 +42,9 @@ def xml_to_dict(xml_path):
             "y2": int(root.find("./object/bndbox/ymax").text)}
 
 
+
+
+
 # TODO improve the script. This was made on the fly to test things out...
 if __name__ == "__main__":
     script_dir = Path(__file__).parent.resolve()
@@ -59,6 +62,8 @@ if __name__ == "__main__":
     # List all individual files in the annotations directory.
     ann_files = sorted(list((data_dir / ANNOTATIONS_DIR).iterdir()))
     
+    
+    # Train val split.
     train_files = random.sample(ann_files, int(len(ann_files)*0.8))
     val_files = list(set(ann_files).difference(set(train_files)))
     #train_files = ann_files[:int(len(ann_files)*0.8)]
@@ -76,7 +81,6 @@ if __name__ == "__main__":
             train_images.append((data_dir / ORIG_IMG_DIR / (f.stem + ".jpg")))
 
     assert len(train_files) == len(train_images)
-    #print(set([f.stem for f in train_files]).difference(set([f.stem for f in train_images])))
 
     val_images = []
     for f in val_files:
@@ -131,7 +135,7 @@ if __name__ == "__main__":
             {
                 'id': i,
                 'image_id': rev_img_id_ann[f["filename"].stem],
-                'category_id': 1 if f["label"] == "dog" else 2,
+                'category_id': 0 if f["label"] == "dog" else 1,
                 'bbox': [f["x1"], f["y1"], f["x2"] - f["x1"], f["y2"] - f["y1"]],
                 'area': (f["x2"] - f["x1"]) * (f["y2"] - f["y1"]),
                 'segmentation': [[]],
@@ -179,7 +183,7 @@ if __name__ == "__main__":
             {
                 'id': i,
                 'image_id': rev_img_id_ann[f["filename"].stem],
-                'category_id': 1 if f["label"]=="dog" else 2,
+                'category_id': 0 if f["label"] == "dog" else 1,
                 'bbox': [f["x1"], f["y1"], f["x2"] - f["x1"], f["y2"] - f["y1"]],
                 'area': (f["x2"] - f["x1"]) * (f["y2"] - f["y1"]),
                 'segmentation': [[]],
