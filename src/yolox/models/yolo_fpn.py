@@ -5,8 +5,8 @@
 import torch
 import torch.nn as nn
 
-from .darknet import Darknet
-from .network_blocks import BaseConv
+from yolox.models.darknet import Darknet
+from yolox.models.network_blocks import BaseConv
 
 
 class YOLOFPN(nn.Module):

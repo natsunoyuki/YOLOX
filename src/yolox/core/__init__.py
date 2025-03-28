@@ -2,5 +2,5 @@
 # -*- coding:utf-8 -*-
 # Copyright (c) Megvii, Inc. and its affiliates.
 
-from .launch import launch
-from .trainer import Trainer
+from yolox.core.launch import launch
+from yolox.core.trainer import Trainer
