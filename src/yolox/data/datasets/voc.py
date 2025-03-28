@@ -16,8 +16,8 @@ import numpy as np
 
 from yolox.evaluators.voc_eval import voc_eval
 
-from .datasets_wrapper import CacheDataset, cache_read_img
-from .voc_classes import VOC_CLASSES
+from yolox.data.datasets.datasets_wrapper import CacheDataset, cache_read_img
+from yolox.data.datasets.voc_classes import VOC_CLASSES
 
 
 class AnnotationTransform(object):
